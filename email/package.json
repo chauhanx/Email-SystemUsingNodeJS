@@ -1,0 +1,10 @@
+{
+  "name": "email",
+  "version": "1.0.0",
+  "description": "Email System Using NodeJs and ExpressJs",
+  "dependencies":{
+    "nodemailer":"latest",
+    "express":"latest"
+  },
+  "author": "Ankur Chauhan"
+}

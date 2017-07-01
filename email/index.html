@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />  
+  
+    <style>
+    .well{background-color: royalblue;margin: 70px 400px 00px 400px;}
+    #message{color: white;font-size: 24px;}
+    h1, label{color: white}
+    </style>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    
+     <!-------------------Script to link send button with other functionalities -------------------------->
+      <script >
+        $(document).ready(function(){
+            $("#send_email").click(function(){
+                var to = $("#to").val();
+                var subject = $("#subject").val();
+                var text = $("#content").val();
+                $("#message").text("Sending E-mail....... Please Wait.");
+                $.get("http://localhost:8080/send",
+                {to:to,subject:subject,text:text},function(data){
+                    if(data=="sent"){
+                        $("#message").empty().html("Email sent to:" + to);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</head>
+<body>
+    <div id="container">
+        <div class="well well-lg">                
+            <center>
+                <h1>My-mail</h1>
+            </center>
+            <form>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="Enter email address" class="form-control" id="to" /><br/>
+                    <label for="text">Subject</label>
+                    <input type="text" placeholder="Subject" class="form-control" id="subject" /><br/>
+                    <label for="text">Message</label>
+                    <textarea name="" class="form-control"  id="content" cols="40" rows="5" placeholder="Type Your Message here..........."></textarea><br/>
+                    <button class="btn btn-success" id="send_email">Send</button><br/>
+                    <span id="message"></span>
+                </div>
+            </form>            
+        </div>
+    </div>
+    
+</html>
